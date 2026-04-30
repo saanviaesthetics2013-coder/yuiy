@@ -3,111 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Command Center</title>
+  <title>Command Center OS</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <!-- Boot Screen -->
   <div class="boot" id="boot">
-    <div class="boot-card">
-      <div class="boot-header">
-        <span class="boot-dot"></span>
-        <h1>BOOTING SYSTEM</h1>
-      </div>
-      <p class="boot-status" id="bootStatus">Initializing...</p>
-      <div class="boot-bar">
-        <div class="boot-fill" id="bootFill"></div>
-      </div>
+    <div class="boot-box">
+      <h1>BOOTING COMMAND CENTER</h1>
+      <div class="boot-log" id="bootLog"></div>
     </div>
   </div>
 
   <!-- Command Palette -->
   <div class="palette" id="palette">
     <div class="palette-box">
-      <input id="paletteInput" type="text" placeholder="Type a command (about, projects, contact, theme)..." />
-      <div class="palette-list" id="paletteList"></div>
+      <input id="paletteInput" type="text" placeholder="Command (help, about, projects, contact, theme, clear)..." />
+      <div class="palette-results" id="paletteResults"></div>
     </div>
   </div>
 
-  <div class="glow"></div>
+  <!-- Notifications -->
+  <div class="notifications" id="notifications"></div>
 
+  <div class="glow"></div>
+  <div class="scanlines"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="side-title">OS PANEL</div>
+
+    <button class="side-btn" onclick="scrollToSection('profile')">Profile</button>
+    <button class="side-btn" onclick="scrollToSection('projects')">Projects</button>
+    <button class="side-btn" onclick="scrollToSection('feed')">System Feed</button>
+    <button class="side-btn" onclick="scrollToSection('contact')">Contact</button>
+
+    <div class="side-footer">
+      <p>Ctrl+K</p>
+      <p>Esc Close</p>
+    </div>
+  </aside>
+
+  <!-- Topbar -->
   <header class="topbar">
     <div class="brand">
       <span class="dot"></span>
-      <span class="brand-name">YOURNAME</span>
+      <span>YOURNAME</span>
     </div>
 
-    <div class="actions">
-      <span class="clock" id="clock">00:00:00</span>
+    <div class="top-actions">
+      <span id="clock" class="clock"></span>
       <button class="btn" id="themeBtn">Theme</button>
-      <button class="btn" id="paletteBtn">Ctrl + K</button>
+      <button class="btn" id="cmdBtn">Cmd</button>
     </div>
   </header>
 
-  <main class="dashboard">
+  <!-- Main -->
+  <main class="desktop">
 
-    <section class="panel profile">
+    <section class="panel profile" id="profile">
       <h2>Profile</h2>
-      <p class="muted">Developer • Designer • Creator</p>
+      <p class="muted">Developer • UI Engineer • Creative Coder</p>
 
       <div class="stats">
-        <div class="stat">
-          <h3>15+</h3>
-          <p>Projects</p>
-        </div>
-        <div class="stat">
-          <h3>4+</h3>
-          <p>Skills</p>
-        </div>
-        <div class="stat">
-          <h3>24/7</h3>
-          <p>Building</p>
-        </div>
+        <div class="stat"><h3>20+</h3><p>Projects</p></div>
+        <div class="stat"><h3>5+</h3><p>Tech</p></div>
+        <div class="stat"><h3>∞</h3><p>Ideas</p></div>
       </div>
 
-      <button class="btn primary" id="aboutBtn">Open Bio</button>
+      <button class="btn primary" onclick="openWindow('About', aboutText)">Open Bio</button>
     </section>
 
-    <section class="panel projects">
+    <section class="panel projects" id="projects">
       <div class="panel-head">
         <h2>Projects</h2>
         <input id="search" type="text" placeholder="Search..." />
       </div>
 
-      <div class="project-grid" id="projectGrid"></div>
+      <div class="grid" id="projectGrid"></div>
     </section>
 
-    <section class="panel feed">
+    <section class="panel feed" id="feed">
       <h2>System Feed</h2>
       <div class="feed-list" id="feedList"></div>
     </section>
 
-    <section class="panel contact">
+    <section class="panel contact" id="contact">
       <h2>Contact</h2>
-      <p class="muted">Let’s collaborate on something serious.</p>
+      <p class="muted">Let’s build something real.</p>
 
       <div class="links">
-        <a href="#" target="_blank">GitHub</a>
-        <a href="#" target="_blank">LinkedIn</a>
-        <a href="#" target="_blank">Instagram</a>
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
       </div>
 
-      <button class="btn" id="contactBtn">Open Contact</button>
+      <button class="btn" onclick="openWindow('Contact', contactText)">Open Contact Window</button>
     </section>
 
   </main>
 
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-box">
-      <div class="modal-top">
-        <h2 id="modalTitle">Title</h2>
-        <button class="close" id="closeModal">✕</button>
-      </div>
-      <p id="modalBody"></p>
-    </div>
-  </div>
+  <!-- Windows Container -->
+  <div class="windows" id="windows"></div>
 
   <script src="script.js"></script>
 </body>
