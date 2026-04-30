@@ -11,8 +11,9 @@
   <!-- Boot Screen -->
   <div class="boot" id="boot">
     <div class="boot-box">
-      <h1>WEB OS</h1>
-      <p id="bootText">Initializing system...</p>
+      <h1 class="boot-title">WEB OS</h1>
+      <p class="boot-sub" id="bootText">Initializing system...</p>
+
       <div class="boot-bar">
         <div class="boot-fill" id="bootFill"></div>
       </div>
@@ -23,118 +24,150 @@
   <div class="desktop" id="desktop">
 
     <!-- Top Bar -->
-    <div class="topbar">
+    <header class="topbar">
       <div class="top-left">
         <span class="os-dot"></span>
         <span class="os-name">WEB OS</span>
       </div>
-      <div class="top-right">
-        <span id="clock">00:00</span>
-      </div>
-    </div>
 
-    <!-- Icons -->
-    <div class="icons">
+      <div class="top-right">
+        <span id="clock">00:00:00</span>
+      </div>
+    </header>
+
+    <!-- Desktop Icons -->
+    <section class="icons">
       <div class="icon" onclick="openWindow('aboutWin')">
-        <span>👩‍💻</span>
+        <span class="icon-emoji">👩‍💻</span>
         <p>About</p>
       </div>
 
       <div class="icon" onclick="openWindow('projectsWin')">
-        <span>📂</span>
+        <span class="icon-emoji">📂</span>
         <p>Projects</p>
       </div>
 
       <div class="icon" onclick="openWindow('terminalWin')">
-        <span>🖥️</span>
+        <span class="icon-emoji">🖥️</span>
         <p>Terminal</p>
       </div>
 
       <div class="icon" onclick="openWindow('settingsWin')">
-        <span>⚙️</span>
+        <span class="icon-emoji">⚙️</span>
         <p>Settings</p>
       </div>
-    </div>
-
-    <!-- Taskbar -->
-    <div class="taskbar">
-      <button class="task-btn" onclick="toggleMenu()">☰</button>
-      <button class="task-btn" onclick="openWindow('aboutWin')">About</button>
-      <button class="task-btn" onclick="openWindow('projectsWin')">Projects</button>
-      <button class="task-btn" onclick="openWindow('terminalWin')">Terminal</button>
-      <button class="task-btn" onclick="openWindow('settingsWin')">Settings</button>
-    </div>
+    </section>
 
     <!-- Start Menu -->
     <div class="start-menu" id="startMenu">
-      <h3>Apps</h3>
+      <h3>Applications</h3>
       <button onclick="openWindow('aboutWin')">👩‍💻 About</button>
       <button onclick="openWindow('projectsWin')">📂 Projects</button>
       <button onclick="openWindow('terminalWin')">🖥️ Terminal</button>
       <button onclick="openWindow('settingsWin')">⚙️ Settings</button>
     </div>
 
-    <!-- Windows -->
+    <!-- Taskbar -->
+    <footer class="taskbar">
+      <button class="task-btn" onclick="toggleMenu()">☰</button>
+      <button class="task-btn" onclick="openWindow('aboutWin')">About</button>
+      <button class="task-btn" onclick="openWindow('projectsWin')">Projects</button>
+      <button class="task-btn" onclick="openWindow('terminalWin')">Terminal</button>
+      <button class="task-btn" onclick="openWindow('settingsWin')">Settings</button>
+    </footer>
+
+    <!-- About Window -->
     <div class="window" id="aboutWin">
       <div class="win-bar" onmousedown="dragStart(event, 'aboutWin')">
         <span>About</span>
         <button onclick="closeWindow('aboutWin')">✕</button>
       </div>
+
       <div class="win-body">
         <h2>Hello 👋</h2>
         <p>
-          I’m a young developer building advanced websites that feel like real applications.
-          This portfolio is designed like an operating system.
+          I’m a young developer building advanced interactive websites that feel like real applications.
+          This portfolio is built like a Web Operating System.
         </p>
-        <p><b>Skills:</b> HTML, CSS, JavaScript, UI/UX, Web Animations</p>
+
+        <p>
+          <b>Focus:</b> UI/UX, Web Animations, Frontend Development
+        </p>
+
+        <p>
+          <b>Skills:</b> HTML, CSS, JavaScript, Next.js, Vercel Hosting
+        </p>
       </div>
     </div>
 
+    <!-- Projects Window -->
     <div class="window" id="projectsWin">
       <div class="win-bar" onmousedown="dragStart(event, 'projectsWin')">
         <span>Projects</span>
         <button onclick="closeWindow('projectsWin')">✕</button>
       </div>
+
       <div class="win-body">
         <h2>Project Vault</h2>
+        <p>Click any project to open details.</p>
+
         <div class="project-grid">
-          <div class="project-card" onclick="alert('Project 1 opened!')">
+          <div class="project-card" onclick="alert('Neon Dashboard opened!')">
             <h3>Neon Dashboard</h3>
             <p>Futuristic UI system</p>
           </div>
-          <div class="project-card" onclick="alert('Project 2 opened!')">
+
+          <div class="project-card" onclick="alert('AI Portfolio opened!')">
             <h3>AI Portfolio</h3>
             <p>Interactive portfolio concept</p>
           </div>
-          <div class="project-card" onclick="alert('Project 3 opened!')">
+
+          <div class="project-card" onclick="alert('Game UI Website opened!')">
             <h3>Game UI Website</h3>
             <p>Website like a game menu</p>
+          </div>
+
+          <div class="project-card" onclick="alert('WebOS Portfolio opened!')">
+            <h3>WebOS Portfolio</h3>
+            <p>Desktop-based portfolio</p>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Terminal Window -->
     <div class="window terminal" id="terminalWin">
       <div class="win-bar" onmousedown="dragStart(event, 'terminalWin')">
         <span>Terminal</span>
         <button onclick="closeWindow('terminalWin')">✕</button>
       </div>
+
       <div class="win-body terminal-body">
         <div class="terminal-output" id="terminalOutput">
           <p>Welcome to WebOS Terminal.</p>
-          <p>Type: <b>help</b></p>
+          <p>Type <b>help</b> to view commands.</p>
         </div>
-        <input type="text" id="terminalInput" placeholder="Enter command..." />
+
+        <input
+          type="text"
+          id="terminalInput"
+          placeholder="Enter command..."
+          autocomplete="off"
+        />
       </div>
     </div>
 
+    <!-- Settings Window -->
     <div class="window" id="settingsWin">
       <div class="win-bar" onmousedown="dragStart(event, 'settingsWin')">
         <span>Settings</span>
         <button onclick="closeWindow('settingsWin')">✕</button>
       </div>
+
       <div class="win-body">
         <h2>System Settings</h2>
+        <p>Customize your WebOS experience.</p>
+
         <button class="setting-btn" onclick="toggleTheme()">Toggle Theme</button>
         <button class="setting-btn" onclick="changeWallpaper()">Change Wallpaper</button>
       </div>
