@@ -1,24 +1,3 @@
-/* ===============================
-   COMMAND CENTER PORTFOLIO UI
-   style.css (Professional Version)
-   =============================== */
-
-:root {
-  --bg: #05070c;
-  --panel: rgba(255, 255, 255, 0.05);
-  --panel-2: rgba(0, 0, 0, 0.35);
-  --border: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.18);
-  --text: #ffffff;
-  --muted: rgba(255, 255, 255, 0.72);
-  --muted-2: rgba(255, 255, 255, 0.55);
-  --cyan: #00ffff;
-  --magenta: #ff00ff;
-  --shadow: rgba(0, 0, 0, 0.45);
-  --radius: 22px;
-  --radius-sm: 16px;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -27,43 +6,9 @@
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  transition: 0.35s ease;
+  background: black;
+  overflow: hidden;
 }
-
-/* ===============================
-   Background Effects
-   =============================== */
-
-.glow {
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.14), transparent 55%),
-    radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.10), transparent 55%);
-  z-index: -2;
-}
-
-.glow::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.02) 1px,
-    transparent 1px,
-    transparent 6px
-  );
-  opacity: 0.18;
-  pointer-events: none;
-}
-
-/* ===============================
-   Boot Screen
-   =============================== */
 
 .boot {
   position: fixed;
@@ -75,515 +20,289 @@ body {
   z-index: 9999;
 }
 
-.boot-card {
-  width: 92%;
-  max-width: 460px;
-  padding: 22px;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-strong);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.65);
+.boot-box {
+  width: 90%;
+  max-width: 450px;
+  padding: 25px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  color: white;
+  text-align: center;
 }
 
-.boot-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.boot-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 18px var(--cyan);
-}
-
-.boot-header h1 {
-  font-size: 13px;
-  letter-spacing: 3px;
-  opacity: 0.9;
-}
-
-.boot-status {
-  font-size: 14px;
-  opacity: 0.8;
+.boot-box h1 {
+  letter-spacing: 5px;
   margin-bottom: 15px;
+  color: cyan;
 }
 
 .boot-bar {
-  width: 100%;
   height: 10px;
+  width: 100%;
   border-radius: 50px;
-  background: rgba(255, 255, 255, 0.12);
   overflow: hidden;
+  background: rgba(255,255,255,0.12);
+  margin-top: 15px;
 }
 
 .boot-fill {
-  width: 0%;
   height: 100%;
-  background: var(--cyan);
+  width: 0%;
+  background: cyan;
   transition: 0.2s;
 }
 
-/* ===============================
-   Top Navigation Bar
-   =============================== */
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: none;
+}
 
+/* Top bar */
 .topbar {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
-  padding: 18px 42px;
+  height: 45px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.65);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  z-index: 500;
+  padding: 0 20px;
+  color: white;
 }
 
-.brand {
+.top-left {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.dot {
+.os-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 18px var(--cyan);
+  background: cyan;
+  box-shadow: 0 0 14px cyan;
 }
 
-.brand-name {
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.clock {
-  padding: 8px 14px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+.os-name {
+  font-weight: bold;
+  letter-spacing: 3px;
   font-size: 13px;
+}
+
+#clock {
   opacity: 0.85;
-  background: rgba(255, 255, 255, 0.04);
 }
 
-/* ===============================
-   Buttons
-   =============================== */
-
-.btn {
-  padding: 10px 15px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.35);
-}
-
-.btn:active {
-  transform: translateY(0px) scale(0.98);
-}
-
-.primary {
-  background: var(--cyan);
-  color: black;
-  font-weight: 800;
-  border: 1px solid rgba(0, 255, 255, 0.8);
-}
-
-/* ===============================
-   Dashboard Layout
-   =============================== */
-
-.dashboard {
-  padding: 120px 42px 60px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 18px;
-  animation: fadeIn 0.9s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===============================
-   Panels
-   =============================== */
-
-.panel {
-  border-radius: var(--radius);
-  padding: 20px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 0 45px var(--shadow);
-  transition: 0.25s ease;
-}
-
-.panel:hover {
-  border-color: rgba(0, 255, 255, 0.25);
-}
-
-.panel h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.muted {
-  opacity: 0.72;
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-
-/* ===============================
-   Profile Stats
-   =============================== */
-
-.stats {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.stat {
-  flex: 1;
-  padding: 12px;
-  border-radius: var(--radius);
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  text-align: center;
-  transition: 0.25s ease;
-}
-
-.stat:hover {
-  border-color: rgba(0, 255, 255, 0.35);
-  transform: translateY(-2px);
-}
-
-.stat h3 {
-  font-size: 20px;
-}
-
-.stat p {
-  font-size: 12px;
-  opacity: 0.7;
-}
-
-/* ===============================
-   Projects Panel
-   =============================== */
-
-.projects {
-  grid-row: span 2;
-}
-
-.panel-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.panel-head input {
-  width: 240px;
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(0, 0, 0, 0.35);
-  color: white;
-  outline: none;
-  transition: 0.25s ease;
-}
-
-.panel-head input:focus {
-  border-color: rgba(0, 255, 255, 0.7);
-  box-shadow: 0 0 18px rgba(0, 255, 255, 0.15);
-}
-
-.project-grid {
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 14px;
-}
-
-/* ===============================
-   Project Cards
-   =============================== */
-
-.card {
-  padding: 16px;
-  border-radius: var(--radius);
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  transition: 0.25s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.card::after {
-  content: "";
+/* Icons */
+.icons {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(0, 255, 255, 0.18),
-    transparent 60%
-  );
-  opacity: 0;
-  transition: 0.3s ease;
-}
-
-.card:hover::after {
-  opacity: 1;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(0, 255, 255, 0.55);
-}
-
-.card h3 {
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-
-.card p {
-  font-size: 12px;
-  opacity: 0.72;
-}
-
-/* ===============================
-   Feed Panel
-   =============================== */
-
-.feed-list {
+  top: 70px;
+  left: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 18px;
 }
 
-.feed-item {
-  padding: 12px;
-  border-radius: var(--radius);
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 13px;
-  opacity: 0.88;
-  transition: 0.25s ease;
-}
-
-.feed-item:hover {
-  border-color: rgba(255, 0, 255, 0.35);
-}
-
-/* ===============================
-   Contact Panel Links
-   =============================== */
-
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.links a {
-  color: var(--cyan);
-  text-decoration: none;
-  font-size: 14px;
-  opacity: 0.9;
+.icon {
+  width: 80px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  padding: 10px;
+  border-radius: 16px;
   transition: 0.2s;
 }
 
-.links a:hover {
-  opacity: 1;
-  text-decoration: underline;
+.icon:hover {
+  background: rgba(255,255,255,0.08);
 }
 
-/* ===============================
-   Modal
-   =============================== */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  z-index: 2000;
+.icon span {
+  font-size: 28px;
 }
 
-.modal-box {
+.icon p {
+  font-size: 12px;
+  margin-top: 5px;
+  opacity: 0.85;
+}
+
+/* Taskbar */
+.taskbar {
+  position: absolute;
+  bottom: 0;
   width: 100%;
-  max-width: 560px;
-  border-radius: var(--radius);
-  padding: 20px;
-  background: rgba(18, 18, 28, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 0 70px rgba(0, 0, 0, 0.7);
-  animation: popIn 0.2s ease;
-}
-
-@keyframes popIn {
-  from {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.modal-top {
+  height: 55px;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.12);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 10px;
+  padding: 0 15px;
+}
+
+.task-btn {
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.task-btn:hover {
+  border-color: rgba(0,255,255,0.55);
+  transform: translateY(-2px);
+}
+
+/* Start menu */
+.start-menu {
+  position: absolute;
+  bottom: 70px;
+  left: 15px;
+  width: 240px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+  display: none;
+}
+
+.start-menu h3 {
   margin-bottom: 12px;
 }
 
-.close {
+.start-menu button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 14px;
+  margin-top: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  cursor: pointer;
+}
+
+.start-menu button:hover {
+  border-color: cyan;
+}
+
+/* Windows */
+.window {
+  position: absolute;
+  width: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(20,20,30,0.85);
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 60px rgba(0,0,0,0.6);
+  display: none;
+  color: white;
+}
+
+.win-bar {
+  height: 40px;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+  cursor: grab;
+}
+
+.win-bar button {
   background: none;
   border: none;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   opacity: 0.7;
-  transition: 0.2s;
 }
 
-.close:hover {
+.win-bar button:hover {
   opacity: 1;
 }
 
-/* ===============================
-   Command Palette
-   =============================== */
-
-.palette {
-  position: fixed;
-  inset: 0;
-  display: none;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 120px;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 3000;
-}
-
-.palette-box {
-  width: 95%;
-  max-width: 600px;
-  padding: 16px;
-  border-radius: var(--radius);
-  background: rgba(15, 15, 20, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 0 70px rgba(0, 0, 0, 0.7);
-}
-
-.palette-box input {
-  width: 100%;
-  padding: 14px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-  outline: none;
+.win-body {
+  padding: 18px;
   font-size: 14px;
+  opacity: 0.9;
 }
 
-.palette-box input:focus {
-  border-color: rgba(0, 255, 255, 0.7);
-}
-
-.palette-list {
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
   margin-top: 12px;
+}
+
+.project-card {
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: cyan;
+}
+
+/* Terminal */
+.terminal-body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
-.palette-item {
+.terminal-output {
+  height: 180px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.5);
+  border-radius: 14px;
   padding: 12px;
-  border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
+  font-family: monospace;
+  font-size: 13px;
+}
+
+#terminalInput {
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.35);
+  color: white;
+  outline: none;
+}
+
+/* Settings */
+.setting-btn {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: white;
   cursor: pointer;
-  transition: 0.25s ease;
 }
 
-.palette-item:hover {
-  border-color: rgba(0, 255, 255, 0.65);
-  transform: translateY(-2px);
-}
-
-/* ===============================
-   Responsive Layout
-   =============================== */
-
-@media (max-width: 950px) {
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .projects {
-    grid-row: auto;
-  }
-
-  .panel-head input {
-    width: 160px;
-  }
-}
-
-@media (max-width: 520px) {
-  .topbar {
-    padding: 16px 18px;
-  }
-
-  .dashboard {
-    padding: 110px 18px 40px;
-  }
-
-  .clock {
-    display: none;
-  }
-
-  .actions {
-    gap: 8px;
-  }
+.setting-btn:hover {
+  border-color: cyan;
 }
