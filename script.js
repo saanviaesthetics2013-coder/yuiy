@@ -1,236 +1,141 @@
-const clock = document.getElementById("clock");
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modalTitle");
-const modalBody = document.getElementById("modalBody");
-
-const closeModalBtn = document.getElementById("closeModal");
-
-const projectGrid = document.getElementById("projectGrid");
-const feedList = document.getElementById("feedList");
-const search = document.getElementById("search");
-
 const boot = document.getElementById("boot");
-const bootStatus = document.getElementById("bootStatus");
+const desktop = document.getElementById("desktop");
 const bootFill = document.getElementById("bootFill");
+const bootText = document.getElementById("bootText");
 
-const palette = document.getElementById("palette");
-const paletteInput = document.getElementById("paletteInput");
-const paletteList = document.getElementById("paletteList");
+const clock = document.getElementById("clock");
+const startMenu = document.getElementById("startMenu");
 
-const themeBtn = document.getElementById("themeBtn");
-const paletteBtn = document.getElementById("paletteBtn");
+const terminalInput = document.getElementById("terminalInput");
+const terminalOutput = document.getElementById("terminalOutput");
 
-const aboutBtn = document.getElementById("aboutBtn");
-const contactBtn = document.getElementById("contactBtn");
-
-let lightMode = false;
-
-const aboutText =
-  "I build premium interactive websites that feel like products. I focus on clean UI/UX, smooth animations, and modern web experiences.";
-
-const contactText =
-  "Email: yourmail@example.com\nGitHub: https://github.com/yourusername\nLinkedIn: https://linkedin.com/in/yourusername";
-
-const projects = [
-  { title: "Command Center UI", tags: "Frontend / UI", desc: "A futuristic dashboard style portfolio system." },
-  { title: "Smart Portfolio", tags: "Web / UX", desc: "A portfolio that behaves like a real application." },
-  { title: "Interactive Resume", tags: "Design / UI", desc: "Resume experience with animations and timeline layout." },
-  { title: "Project Vault", tags: "JavaScript", desc: "Projects stored in a searchable interactive system." },
-  { title: "Neon Landing", tags: "Landing Page", desc: "A premium landing page with glassmorphism design." }
+let wallpapers = [
+  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=80"
 ];
 
-const feedItems = [
-  "System initialized.",
-  "UI modules loaded.",
-  "Command palette active (Ctrl+K).",
-  "Projects indexed successfully.",
-  "Ready for user interaction."
-];
+let currentWallpaper = 0;
+let lightTheme = false;
 
-/* Clock */
-function updateClock() {
-  clock.textContent = new Date().toLocaleTimeString();
-}
-setInterval(updateClock, 1000);
-updateClock();
-
-/* Modal */
-function openModal(title, body) {
-  modalTitle.textContent = title;
-  modalBody.textContent = body;
-  modal.style.display = "flex";
-}
-
-function closeModal() {
-  modal.style.display = "none";
-}
-
-closeModalBtn.addEventListener("click", closeModal);
-
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) closeModal();
-});
-
-/* Render Projects */
-function renderProjects(list) {
-  projectGrid.innerHTML = "";
-
-  list.forEach((p) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `<h3>${p.title}</h3><p>${p.tags}</p>`;
-    card.addEventListener("click", () => openModal(p.title, p.desc));
-    projectGrid.appendChild(card);
-  });
-}
-
-renderProjects(projects);
-
-/* Search */
-search.addEventListener("input", () => {
-  const q = search.value.toLowerCase();
-
-  const filtered = projects.filter((p) => {
-    return (
-      p.title.toLowerCase().includes(q) ||
-      p.tags.toLowerCase().includes(q)
-    );
-  });
-
-  renderProjects(filtered);
-});
-
-/* Feed */
-function renderFeed() {
-  feedList.innerHTML = "";
-
-  feedItems.forEach((text) => {
-    const item = document.createElement("div");
-    item.className = "feed-item";
-    item.textContent = text;
-    feedList.appendChild(item);
-  });
-}
-
-renderFeed();
-
-/* Boot Animation */
-const bootMessages = [
-  "Initializing modules...",
-  "Loading interface engine...",
-  "Indexing projects...",
-  "Starting command palette...",
-  "System online."
-];
-
+/* ================= BOOT SYSTEM ================= */
 let progress = 0;
+const bootMessages = [
+  "Initializing system...",
+  "Loading UI modules...",
+  "Starting desktop services...",
+  "Preparing applications...",
+  "Launching WebOS..."
+];
+
 let msgIndex = 0;
 
-const bootTimer = setInterval(() => {
+const bootInterval = setInterval(() => {
   progress += 10;
   bootFill.style.width = progress + "%";
 
   if (msgIndex < bootMessages.length) {
-    bootStatus.textContent = bootMessages[msgIndex];
+    bootText.innerText = bootMessages[msgIndex];
     msgIndex++;
   }
 
   if (progress >= 100) {
-    clearInterval(bootTimer);
+    clearInterval(bootInterval);
     setTimeout(() => {
       boot.style.display = "none";
-    }, 600);
+      desktop.style.display = "block";
+    }, 800);
   }
 }, 400);
 
-/* Theme */
-themeBtn.addEventListener("click", () => {
-  lightMode = !lightMode;
+/* ================= CLOCK ================= */
+function updateClock() {
+  const now = new Date();
+  clock.innerText = now.toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+updateClock();
 
-  if (lightMode) {
+/* ================= WINDOW SYSTEM ================= */
+function openWindow(id) {
+  const win = document.getElementById(id);
+  win.style.display = "block";
+  win.style.zIndex = Date.now(); // bring front
+}
+
+function closeWindow(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+/* ================= START MENU ================= */
+function toggleMenu() {
+  startMenu.style.display = startMenu.style.display === "block" ? "none" : "block";
+}
+
+/* ================= DRAG WINDOWS ================= */
+let dragData = { active: false, win: null, offsetX: 0, offsetY: 0 };
+
+function dragStart(e, id) {
+  dragData.active = true;
+  dragData.win = document.getElementById(id);
+
+  const rect = dragData.win.getBoundingClientRect();
+  dragData.offsetX = e.clientX - rect.left;
+  dragData.offsetY = e.clientY - rect.top;
+
+  dragData.win.style.zIndex = Date.now();
+}
+
+document.addEventListener("mousemove", (e) => {
+  if (!dragData.active) return;
+
+  dragData.win.style.left = e.clientX - dragData.offsetX + "px";
+  dragData.win.style.top = e.clientY - dragData.offsetY + "px";
+});
+
+document.addEventListener("mouseup", () => {
+  dragData.active = false;
+});
+
+/* ================= SETTINGS ================= */
+function toggleTheme() {
+  lightTheme = !lightTheme;
+
+  if (lightTheme) {
     document.body.style.background = "#f5f5f5";
-    document.body.style.color = "#111";
   } else {
-    document.body.style.background = "#05070c";
-    document.body.style.color = "white";
+    document.body.style.background = "black";
   }
-});
-
-/* Command Palette */
-function openPalette() {
-  palette.style.display = "flex";
-  paletteInput.value = "";
-  paletteInput.focus();
-  renderPalette("");
 }
 
-function closePalette() {
-  palette.style.display = "none";
+function changeWallpaper() {
+  currentWallpaper++;
+  if (currentWallpaper >= wallpapers.length) currentWallpaper = 0;
+  desktop.style.backgroundImage = `url("${wallpapers[currentWallpaper]}")`;
 }
 
-const commands = [
-  { name: "about", run: () => openModal("About", aboutText) },
-  { name: "projects", run: () => openModal("Projects", "Use the dashboard search bar to explore projects.") },
-  { name: "contact", run: () => openModal("Contact", contactText) },
-  { name: "theme", run: () => themeBtn.click() }
-];
-
-function renderPalette(query) {
-  paletteList.innerHTML = "";
-
-  commands
-    .filter(cmd => cmd.name.includes(query.toLowerCase()))
-    .forEach(cmd => {
-      const div = document.createElement("div");
-      div.className = "palette-item";
-      div.textContent = cmd.name;
-      div.addEventListener("click", () => {
-        closePalette();
-        cmd.run();
-      });
-      paletteList.appendChild(div);
-    });
-}
-
-paletteInput.addEventListener("input", () => {
-  renderPalette(paletteInput.value);
-});
-
-paletteInput.addEventListener("keydown", (e) => {
+/* ================= TERMINAL ================= */
+terminalInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    const input = paletteInput.value.toLowerCase().trim();
-    const found = commands.find(c => c.name === input);
+    const cmd = terminalInput.value.trim().toLowerCase();
+    terminalInput.value = "";
 
-    if (found) {
-      closePalette();
-      found.run();
+    terminalOutput.innerHTML += `<p>> ${cmd}</p>`;
+
+    if (cmd === "help") {
+      terminalOutput.innerHTML += `<p>Commands: help, about, projects, clear, time</p>`;
+    } else if (cmd === "about") {
+      terminalOutput.innerHTML += `<p>This is a WebOS Portfolio made with pure HTML/CSS/JS.</p>`;
+    } else if (cmd === "projects") {
+      terminalOutput.innerHTML += `<p>Projects: Neon Dashboard, AI Portfolio, Game UI Website</p>`;
+    } else if (cmd === "time") {
+      terminalOutput.innerHTML += `<p>${new Date().toLocaleTimeString()}</p>`;
+    } else if (cmd === "clear") {
+      terminalOutput.innerHTML = "";
     } else {
-      paletteList.innerHTML = `<div class="palette-item">Unknown command</div>`;
+      terminalOutput.innerHTML += `<p>Unknown command. Type 'help'</p>`;
     }
-  }
 
-  if (e.key === "Escape") closePalette();
-});
-
-paletteBtn.addEventListener("click", openPalette);
-
-palette.addEventListener("click", (e) => {
-  if (e.target === palette) closePalette();
-});
-
-/* Buttons */
-aboutBtn.addEventListener("click", () => openModal("About", aboutText));
-contactBtn.addEventListener("click", () => openModal("Contact", contactText));
-
-/* Ctrl+K Shortcut */
-document.addEventListener("keydown", (e) => {
-  if (e.ctrlKey && e.key.toLowerCase() === "k") {
-    e.preventDefault();
-    openPalette();
-  }
-
-  if (e.key === "Escape") {
-    closePalette();
-    closeModal();
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
   }
 });
