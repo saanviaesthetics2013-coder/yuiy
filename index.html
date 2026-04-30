@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Center Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-glow"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <h1>YOURNAME</h1>
+    </div>
+
+    <div class="top-actions">
+      <div class="clock" id="clock">00:00:00</div>
+      <button class="btn" id="themeBtn">Theme</button>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <section class="panel profile">
+      <h2>Profile</h2>
+      <p class="muted">Developer / Designer / Creator</p>
+
+      <div class="stats">
+        <div class="stat">
+          <h3>12+</h3>
+          <p>Projects</p>
+        </div>
+        <div class="stat">
+          <h3>3+</h3>
+          <p>Years</p>
+        </div>
+        <div class="stat">
+          <h3>∞</h3>
+          <p>Ideas</p>
+        </div>
+      </div>
+
+      <button class="btn primary" onclick="openModal('About Me', aboutText)">
+        Open Bio
+      </button>
+    </section>
+
+    <section class="panel projects">
+      <div class="panel-header">
+        <h2>Projects</h2>
+        <input id="search" type="text" placeholder="Search projects..." />
+      </div>
+
+      <div class="grid" id="projectGrid">
+        <!-- Filled by JS -->
+      </div>
+    </section>
+
+    <section class="panel activity">
+      <h2>System Feed</h2>
+      <div class="feed" id="feed"></div>
+    </section>
+
+    <section class="panel contact">
+      <h2>Contact</h2>
+      <p class="muted">Let’s build something powerful.</p>
+
+      <div class="links">
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">LinkedIn</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+
+      <button class="btn" onclick="openModal('Contact', contactText)">Open Contact Card</button>
+    </section>
+
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-top">
+        <h2 id="modalTitle"></h2>
+        <button class="close" onclick="closeModal()">✕</button>
+      </div>
+      <p id="modalBody"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
